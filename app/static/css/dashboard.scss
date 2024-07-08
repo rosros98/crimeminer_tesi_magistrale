@@ -1,0 +1,129 @@
+*{
+    margin:0;
+    padding:0;
+    border:0;
+    font-family: "Helvetica"; //Helvetica
+}
+
+html,body{
+    width:100%;
+    height: 100%;
+    overflow: hidden;
+    margin-bottom: 200%;
+}
+
+.pageContainer{
+    width:100%;
+    padding-left: 275px;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar{
+    background-color: #73879C;
+    height: 3.5rem;
+
+    &Text{
+        font-weight: bold;
+        font-size: 1.4rem;
+    }
+
+    &LogoContainer{
+        margin-right: 1rem;
+    }
+
+    &Logo{
+        width:12rem;
+    }
+}
+
+.sidebar{
+    position: absolute;
+    //height: 95vh;
+    height: 100vh;
+    width: 275px;
+    background-color: #f8f9fa;
+
+    &Container{
+        padding: 0.5rem 0rem;
+
+        &Logo{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    &Ul{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end!important;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+        margin-top: 1.5rem;
+    }
+
+    &Item{
+        padding: 0 0.5rem;
+        gap:0.4rem;
+    }
+
+    &Icon{
+        width: 1.8rem;
+        transition: all 0.75s;
+    
+        &Arrow{
+            width: 1rem;
+            transition: all 0.75s;
+        }
+    
+        &ToggleRight{
+            transform: rotate(0deg);
+        }
+    
+        &ToggleDown{
+            transform: rotate(90deg);
+        }
+    }
+
+    &Collapse{
+        padding: 0.8rem 0.75rem 0.8rem 0.5rem;
+
+        &Menu{
+            margin-top: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            background-color: #eeefef;
+            //background-color: #f8f9fa;
+        }
+    
+        &Item{
+            display: flex;
+            align-items: center;
+            gap:0.4rem;
+
+            font-size: 0.9rem;
+            padding: 0.75rem 1.75rem 0.75rem 2.5rem;
+            text-align: inherit;
+            text-decoration: none;
+            color: rgb(0,0,0,0.65);
+            transition: color .15s ease-in-out;
+    
+            &:hover{
+                color: #a30404;
+                border: 1px solid #a30404;
+                border-radius: 4px;
+            }
+
+            &Image{
+                width: 2rem;
+            }
+
+            &Text{
+                font-size: 0.9rem;
+            }
+        }
+    }
+}
