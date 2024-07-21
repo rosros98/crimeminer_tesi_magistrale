@@ -282,6 +282,9 @@ function createGraphEmotion(data) {
 function requestInterlocutorInfoByName(nome) {
   console.log('Richiesta nodo per nome:', nome); // Aggiunto log per il debug
 
+  const graphContainer = document.getElementById('graph-container');
+  const noCombinationMessage = document.getElementById('no-combination-message');
+
   fetch("/CrimeMiner/interlocutoreCrimes/getNodeInfoByName/" + nome, {
     method: "GET"
   })
@@ -294,11 +297,21 @@ function requestInterlocutorInfoByName(nome) {
   })
   .then(data => {
     console.log('Dati ricevuti:', data);
-    createGraphInterlocutor(data.result);
+    if(data.result.nodes.length > 0) {
+      createGraphInterlocutor(data.result);
+      noCombinationMessage.style.display = 'none'; // Nasconde il messaggio di nessuna combinazione trovata
+      graphContainer.style.display = 'block'; // Mostra il contenitore del grafico
+    } else {
+      console.log('Nessuna combinazione trovata.');
+      noCombinationMessage.style.display = 'block'; // Mostra il messaggio di nessuna combinazione trovata
+      graphContainer.style.display = 'none'; // Nasconde il contenitore del grafico
+    } 
   })
   .catch(error => {
     console.error(error);
     showError("Errore nel caricamento delle informazioni per nome.");
+    noCombinationMessage.style.display = 'block'; // Mostra il messaggio di nessuna combinazione trovata in caso di errore
+    graphContainer.style.display = 'none'; // Nasconde il contenitore del grafico in caso di errore
   });
 }
 
@@ -327,6 +340,9 @@ function requestRelationsByDate(start_date, end_date) {
   console.log('Richiesta arco per data iniziale:', start_date);
   console.log('Richiesta arco per data fine:', end_date);
 
+  const graphContainer = document.getElementById('graph-container');
+  const noCombinationMessage = document.getElementById('no-combination-message');
+
   fetch("/CrimeMiner/interlocutoreCrimes/getRelationsByTimeInterval/" + start_date + "/" + end_date, {
     method: "GET"
   })
@@ -339,10 +355,20 @@ function requestRelationsByDate(start_date, end_date) {
   })
   .then(data => {
     console.log('Dati ricevuti:', data);
-    createGraphInterlocutor(data.result);
+    if (data.result.nodes.length > 0) {
+      createGraphInterlocutor(data.result);
+      noCombinationMessage.style.display = 'none'; // Nasconde il messaggio di nessuna combinazione trovata
+      graphContainer.style.display = 'block'; // Mostra il contenitore del grafico
+    } else {
+      console.log('Nessuna combinazione trovata.');
+      noCombinationMessage.style.display = 'block'; // Mostra il messaggio di nessuna combinazione trovata
+      graphContainer.style.display = 'none'; // Nasconde il contenitore del grafico
+    }
   })
   .catch(error => {
     console.error(error);
+    noCombinationMessage.style.display = 'block'; // Mostra il messaggio di nessuna combinazione trovata in caso di errore
+    graphContainer.style.display = 'none'; // Nasconde il contenitore del grafico in caso di errore
   });
 }
 
